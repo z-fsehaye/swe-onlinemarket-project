@@ -10,6 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Entity
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
