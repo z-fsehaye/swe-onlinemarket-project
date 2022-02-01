@@ -1,11 +1,8 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
 import edu.miu.cs.cs425.sweonlinemarketproject.constant.PaymentType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,8 +11,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "payments")
 public class Payment implements Serializable {
@@ -29,8 +25,7 @@ public class Payment implements Serializable {
     @Column(nullable = false)
     private String cardName;
 
-    @NotNull
-    @NotBlank(message = "Required")
+    @NotNull(message = "Required")
     @Column(nullable = false)
     private PaymentType type;
 
@@ -39,18 +34,17 @@ public class Payment implements Serializable {
     @Column(nullable = false, unique = true)
     private String cardNumber;
 
-    @NotNull
-    @NotBlank(message = "Required")
+    @NotNull(message = "Required")
     @Column(nullable = false)
     private int csv;
 
     @Column(name = "is-default")
     private boolean isDefault;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user-id", nullable = false)
-    @JsonBackReference
-    private User user;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user-id", nullable = false)
+//    @JsonBackReference
+//    private User user;
 
 
 }
