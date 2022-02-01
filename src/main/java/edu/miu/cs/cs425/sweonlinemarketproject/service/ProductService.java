@@ -9,6 +9,12 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
+    Product getProductById(long id);
+
+    Product saveProduct(Product product);
+
+    Product updateProduct(long id, Product product);
+
     List<Product> getAllProductsBySellerId(long id);
 
     List<Product> getAllProductWhichAreNotOutOfStock();

@@ -19,13 +19,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long productId;
 
-    private String title;
+    @Column(length = 50, nullable = false)
+    private String name;
 
-    private double quantity;
+    @Column(nullable = false)
+    private BigDecimal price;
 
+    @Column(nullable = false)
     private String description;
 
-    private BigDecimal price;
+    @Column(nullable = false)
+    private double quantity;
 
     private String category;
 
@@ -33,9 +37,5 @@ public class Product {
     private List<Review> reviews;
 
     private long sellerId;
-
-    private long createdDate;
-
-    private long modifiedDate;
 
 }
