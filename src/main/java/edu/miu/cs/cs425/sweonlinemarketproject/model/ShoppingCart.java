@@ -13,12 +13,12 @@ import java.util.List;
 @Entity
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToOne(cascade = CascadeType.MERGE)
     private User buyer;
 
-    @ManyToMany
+    @OneToMany
     private List<Product> products;
 }
