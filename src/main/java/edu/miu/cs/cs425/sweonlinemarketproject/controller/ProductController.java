@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping({"/products"})
@@ -21,53 +22,44 @@ public class ProductController {
     // Displays
 
     @GetMapping("/all")
-    public String displayAllProducts(Model model){
-        model.addAttribute("products", productService.getAllProductWhichAreNotOutOfStock());
-        return "product/list";
+    public List<Product> displayAllProducts(){
+        return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public String displayProductById(Model model, @PathVariable("id") long id){
-        model.addAttribute("product", productService.getProductById(id));
-        return "product/product-view";
+    public Product getProductById(@PathVariable("id") long id){
+        return productService.getProductById(id);
     }
 
     @GetMapping("/my-products/{userId}")
 //    @PreAuthorize("hasRole('" + Role.SELLER + "')")
-    public String displaySellerProducts(Model model, @PathVariable("userId") long userId){
-        model.addAttribute("products", productService.getAllProductsBySellerId(userId));
-        return "product/list";
+    public List<Product> getSellerProducts(@PathVariable("userId") long userId){
+        return productService.getAllProductsBySellerId(userId);
     }
 
-    @GetMapping("/new-prodcut")
-    public String displayNewProductForm(Model model){
-        model.addAttribute("product", new Product());
-        return "product/product-form";
-    }
+//    @GetMapping("/new-prodcut")
+//    public String getNewProductForm(Model model){
+//        model.addAttribute("product", new Product());
+//        return "product/product-form";
+//    }
 
-    @GetMapping("/update-product/{id}")
-    public String displayUpdateProductForm(Model model, @PathVariable("id") long id){
-        model.addAttribute("product", productService.getProductById(id));
-        return "product/product-form";
-    }
+//    @GetMapping("/update-product/{id}")
+//    public String displayUpdateProductForm(Model model, @PathVariable("id") long id){
+//        model.addAttribute("product", productService.getProductById(id));
+//        return "product/product-form";
+//    }
 
     // Save and Update
 
     @PostMapping("/save-product")
-    public String saveProduct(Model model, @Valid @ModelAttribute("product") Product product, BindingResult result){
-        if (result.hasErrors()) {
-            model.addAttribute("errors", result.getAllErrors());
-            return "product/product-form";
-        }
-        productService.saveProduct(product);
-        return "redirect:/product/list";
+    public Product saveProduct(@RequestBody Product product){
+        return productService.saveProduct(product);
     }
 
     // Delete
     @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable("id") long id){
+    public void deleteProduct(@PathVariable("id") long id){
         productService.deleteById(id);
-        return "redirect:/product/list";
     }
 
 
