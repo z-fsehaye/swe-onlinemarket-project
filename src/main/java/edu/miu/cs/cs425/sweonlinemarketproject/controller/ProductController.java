@@ -3,6 +3,7 @@ package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 import edu.miu.cs.cs425.sweonlinemarketproject.model.Product;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/my-products/{userId}")
+//    @PreAuthorize("hasRole('" + Role.SELLER + "')")
     public String displaySellerProducts(Model model, @PathVariable("userId") long userId){
         model.addAttribute("products", productService.getAllProductsBySellerId(userId));
         return "product/list";
