@@ -32,7 +32,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    private String sellerId;
+    private long sellerId;
 
     private long createdDate;
 
