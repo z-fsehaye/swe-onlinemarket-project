@@ -19,6 +19,8 @@ public class ShoppingCart {
     @OneToOne(cascade = CascadeType.MERGE)
     private User buyer;
 
-    @OneToMany
-    private List<Product> products;
+
+
+    @OneToMany(mappedBy = "shoppingCart")
+    private List<ShoppingCartItem> shoppingCartItem;
 }

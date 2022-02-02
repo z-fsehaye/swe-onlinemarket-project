@@ -41,10 +41,10 @@ public class Payment implements Serializable {
     @Column(name = "is-default")
     private boolean isDefault;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user-id", nullable = false)
-//    @JsonBackReference
-//    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user-id", nullable = false)
+    //@JsonBackReference
+    private User user;
 
 
 }
