@@ -49,7 +49,7 @@ public class User {
     private long modifiedDate;
     @OneToMany(mappedBy = "user")
     private List<Address> address;
-    @OneToMany(mappedBy = "user")
-    List<Payment> payment;
+//    @OneToMany(mappedBy = "user")
+//    List<Payment> payment;
 
 }

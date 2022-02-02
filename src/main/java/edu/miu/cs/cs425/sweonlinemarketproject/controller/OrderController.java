@@ -4,6 +4,7 @@ import edu.miu.cs.cs425.sweonlinemarketproject.model.Order;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class OrderController {
     }
 
     @PostMapping(value="/save")
-    public Order saveOrder(@RequestBody Order order){
+    public Order saveOrder(@Valid @RequestBody Order order){
         return orderService.saveOrder(order);
     }
 
