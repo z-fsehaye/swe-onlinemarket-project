@@ -16,7 +16,7 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(mappedBy = "shoppingCart",cascade = CascadeType.MERGE)
     private User buyer;
 
 

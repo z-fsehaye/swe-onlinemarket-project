@@ -17,7 +17,8 @@ import javax.validation.constraints.Size;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long Id;
+
     @NotBlank
     private String street;
 
@@ -36,6 +37,7 @@ public class Address {
     @NotNull
     @Size(min=10, max=10, message="phone number have size of 10.")
     private long phoneNumber;
+
     @ManyToOne
     @JoinColumn(name = "user_Id")
     private User user;

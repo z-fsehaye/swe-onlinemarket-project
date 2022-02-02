@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "select p from Product p where p.seller.Id = :id")
+    @Query(value = "select p from Product p where p.seller.id = :id")
     List<Product> findBySellerId(@Param("id") long id);
 
     @Query(value = "select p from Product p where p.quantity > 0")

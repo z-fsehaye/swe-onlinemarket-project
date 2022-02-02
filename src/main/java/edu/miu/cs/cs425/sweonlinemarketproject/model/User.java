@@ -18,7 +18,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
     @NotNull
     @NotBlank
     @Column(nullable = false)
@@ -39,17 +39,24 @@ public class User {
     private String password;
     @NotNull
     @NotBlank
-//    @Column(nullable = false)
+
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_Id")
     private Role role;
 
     private boolean approvedSeller;
     private long createDate;
     private long modifiedDate;
+
     @OneToMany(mappedBy = "user")
     private List<Address> address;
-//    @OneToMany(mappedBy = "user")
-//    List<Payment> payment;
+
+    @OneToMany(mappedBy = "user")
+    List<Payment> payment;
+
+    @OneToOne
+    @JoinColumn(name = "buyer_Id")
+    private ShoppingCart shoppingCart;
+
 
 }
