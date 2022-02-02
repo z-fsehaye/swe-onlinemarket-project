@@ -16,9 +16,9 @@ import java.util.List;
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String roleId;
+    private Long roleId;
 
-    private String roleType;
+    private RoleType roleType;
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;

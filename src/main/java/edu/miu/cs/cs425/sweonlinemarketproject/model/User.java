@@ -19,7 +19,7 @@ import java.util.List;
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
     @NotNull
     @NotBlank
     @Column(nullable = false)
@@ -42,9 +42,8 @@ public class User implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
-            joinColumns = {@JoinColumn(name = "ID",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID",referencedColumnName = "roleId")}
-    )
+            joinColumns = {@JoinColumn(name = "USER_ID",referencedColumnName = "userId")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID",referencedColumnName = "roleId")})
     private List<Role> roles;
 
     private boolean approvedSeller;
@@ -56,7 +55,7 @@ public class User implements Serializable {
     List<Payment> payment;
 
     @OneToOne
-    @JoinColumn(name = "buyer_Id")
+    @JoinColumn(name = "shopping_cart_Id")
     private ShoppingCart shoppingCart;
 
 

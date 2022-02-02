@@ -1,6 +1,6 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.model;
 
-//import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import edu.miu.cs.cs425.sweonlinemarketproject.constant.PaymentType;
 import lombok.*;
 
@@ -22,7 +22,7 @@ public class Payment implements Serializable {
 
     @NotNull
     @NotBlank(message = "Required")
-   // @Column(nullable = false)
+    @Column(nullable = false)
     private String cardName;
 
     @NotNull(message = "Required")
@@ -30,20 +30,20 @@ public class Payment implements Serializable {
     private PaymentType type;
 
     @NotNull
-   // @NotBlank(message = "Required")
-   // @Column(nullable = false, unique = true)
+    @NotBlank(message = "Required")
+    @Column(nullable = false, unique = true)
     private String cardNumber;
 
     @NotNull(message = "Required")
-   // @Column(nullable = false)
+    @Column(nullable = false)
     private int csv;
 
-    @Column(name = "is-default")
+    @Column(name = "is_default")
     private boolean isDefault;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user-id", nullable = false)
-    //@JsonBackReference
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
 

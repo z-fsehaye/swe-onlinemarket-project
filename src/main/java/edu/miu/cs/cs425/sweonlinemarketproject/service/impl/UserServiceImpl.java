@@ -1,12 +1,10 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.service.impl;
 
-import edu.miu.cs.cs425.sweonlinemarketproject.model.Address;
 import edu.miu.cs.cs425.sweonlinemarketproject.model.User;
 import edu.miu.cs.cs425.sweonlinemarketproject.repository.UserRepository;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user, Long id) {
         User user1=userRepository.findById(id).orElse(null);
         if(!user1.equals(null)) {
-            user1.setId(user.getId());
+            user1.setUserId(user.getUserId());
             user1.setFirstName(user.getFirstName());
             user1.setLastName(user.getLastName());
             user1.setUserName(user.getUserName());
