@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Getter
 @Setter
 @Entity
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

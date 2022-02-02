@@ -8,13 +8,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 @Table(name = "addresses")
-public class Address {
+public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

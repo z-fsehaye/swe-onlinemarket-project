@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,16 +38,16 @@ public class User {
     @NotBlank
     @Column(nullable = false)
     private String password;
-    @NotNull
-    @NotBlank
 
-    @ManyToOne
-    @JoinColumn(name = "role_Id")
-    private Role role;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "ID",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID",referencedColumnName = "roleId")}
+    )
+    private List<Role> roles;
 
     private boolean approvedSeller;
-    private long createDate;
-    private long modifiedDate;
 
     @OneToMany(mappedBy = "user")
     private List<Address> address;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @NoArgsConstructor
@@ -12,12 +13,14 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String roleId;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> user;
+    private String roleType;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 
 }

@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 @Table(name = "shoppingcartitems")
-public class ShoppingCartItem {
+public class ShoppingCartItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
