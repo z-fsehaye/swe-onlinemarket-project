@@ -2,13 +2,15 @@ package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 
 import edu.miu.cs.cs425.sweonlinemarketproject.model.Order;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.OrderService;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/order")
+@RequestMapping(value="/orders")
 public class OrderController {
 
     private OrderService orderService;
@@ -17,24 +19,36 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping(value="/list")
-    public List<Order> getAllOrders(){
-        return orderService.getAllOrders();
+
+    @GetMapping(value="/all")
+    public String getAllOrders(Model model){
+
+        model.addAttribute("orders", orderService.getAllOrders());
+        return "order/list";
     }
 
     @GetMapping(value="/{id}")
-    public Order getOrderById(@PathVariable Long id){
-        return orderService.getOrderById(id);
+    public String getOrderById(@PathVariable("id") long id, Model model){
+        model.addAttribute("orders", orderService.getOrderById(id));
+        return "order/order-view";
     }
 
-    @PostMapping(value="/save")
-    public Order saveOrder(@Valid @RequestBody Order order){
-        return orderService.saveOrder(order);
+
+
+    @PostMapping(value="/save-order")
+    public String saveOrder(@Valid @RequestBody Model model, @Valid @ModelAttribute("order") Order order, BindingResult result){
+        if (result.hasErrors()){
+            model.addAttribute("errors", result.getAllErrors());
+            return "order/order-form";
+        }
+        orderService.saveOrder(order);
+        return "redirect:/order/list";
     }
 
     @DeleteMapping(value="/delete/{id}")
-    public void deleteOrder(@PathVariable Long id){
+    public String deleteOrder(@PathVariable("id") long id){
         orderService.deleteOrderById(id);
+        return "redirect:/order/list";
     }
 
 }
