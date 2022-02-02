@@ -1,5 +1,6 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.model;
 
+import edu.miu.cs.cs425.sweonlinemarketproject.constant.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
-    private RoleType roleType;
+    private String roleType;
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;

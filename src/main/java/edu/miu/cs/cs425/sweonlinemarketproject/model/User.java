@@ -58,5 +58,15 @@ public class User implements Serializable {
     @JoinColumn(name = "shopping_cart_Id")
     private ShoppingCart shoppingCart;
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
