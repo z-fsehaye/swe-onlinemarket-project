@@ -38,11 +38,12 @@ public class Product implements Serializable {
     private String description;
 
     @NotNull
-    @NotBlank
     @Column(nullable = false)
     private int quantity;
 
-    private String category;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String sku;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Review> reviews;
