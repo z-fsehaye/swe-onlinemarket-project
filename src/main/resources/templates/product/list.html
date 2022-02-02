@@ -80,7 +80,7 @@
                 <td th:text="${product.quantity}"></td>
 <!--                <td th:headers=""></td>-->
 
-                <td><a th:href="@{'./update-product/{id}'(id=${product.productId})}">Add to Cart</a></td>
+                <td><a th:href="@{'./update-product/{id}'(id=${product.productId})}">Add new Products</a></td>
                 <td>
                     <a th:href="@{'./delete/{id}'(id=${product.productId})}">Remove from Cart</a>
                     <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/student/delete/' + ${student.bookId}}">Delete</a>-->

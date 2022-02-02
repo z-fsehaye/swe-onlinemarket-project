@@ -62,14 +62,14 @@ public class ProductController {
             return "product/product-form";
         }
         productService.saveProduct(product);
-        return "redirect:/products/all";
+        return "redirect:/product/all";
     }
 
     // Delete
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") long id){
         productService.deleteById(id);
-        return "redirect:/product/list";
+        return "redirect:/product/all";
     }
     @GetMapping(value = "/search")
     public ModelAndView searchBooks(@RequestParam String searchString) {
