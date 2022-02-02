@@ -1,30 +1,17 @@
-<<<<<<< HEAD
 package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
-@RequestMapping(value ={"/", "/eComerce"})
 public class HomeController {
 
     @GetMapping(value = {"/", "/home"})
-    public String home(Model model){
+    public String home(Model model) {
         return "home/index";
     }
-
-}
-=======
-package edu.miu.cs.cs425.sweonlinemarketproject.controller;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
-@Controller
-public class HomeController {
-
     @GetMapping(value = {"/","/onlinemarket","/public/home"})
     public String home0() {
         return "redirect:/onlinemarket/public/home";
@@ -51,4 +38,4 @@ public class HomeController {
     }
 
 }
->>>>>>> origin/main
+
