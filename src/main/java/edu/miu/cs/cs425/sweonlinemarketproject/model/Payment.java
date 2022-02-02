@@ -22,7 +22,7 @@ public class Payment implements Serializable {
 
     @NotNull
     @NotBlank(message = "Required")
-    @Column(nullable = false)
+   // @Column(nullable = false)
     private String cardName;
 
     @NotNull(message = "Required")
@@ -30,12 +30,12 @@ public class Payment implements Serializable {
     private PaymentType type;
 
     @NotNull
-    @NotBlank(message = "Required")
-    @Column(nullable = false, unique = true)
+   // @NotBlank(message = "Required")
+   // @Column(nullable = false, unique = true)
     private String cardNumber;
 
     @NotNull(message = "Required")
-    @Column(nullable = false)
+   // @Column(nullable = false)
     private int csv;
 
     @Column(name = "is-default")
