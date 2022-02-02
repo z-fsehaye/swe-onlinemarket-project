@@ -28,7 +28,6 @@ public class Product implements Serializable {
     private String name;
 
     @NotNull
-    @NotBlank
     @Column(nullable = false)
     private BigDecimal price;
 

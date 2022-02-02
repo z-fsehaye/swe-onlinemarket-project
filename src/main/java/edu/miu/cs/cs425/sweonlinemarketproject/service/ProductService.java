@@ -20,6 +20,7 @@ public interface ProductService {
     List<Product> getAllProductWhichAreNotOutOfStock();
 
     void updateProductQuantity(List<Product> productList);
+    List<Product> searchProducts(String searchString);
 
 //    void updateReview(Review review, String productId);
 

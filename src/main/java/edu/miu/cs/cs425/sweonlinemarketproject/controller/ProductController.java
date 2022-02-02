@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,7 +41,7 @@ public class ProductController {
         return "product/product-view";
     }
 
-    @GetMapping("/new-prodcut")
+    @GetMapping("/new-product")
     public String displayNewProductForm(Model model){
         model.addAttribute("product", new Product());
         return "product/product-form";
@@ -61,7 +62,7 @@ public class ProductController {
             return "product/product-form";
         }
         productService.saveProduct(product);
-        return "redirect:/product/list";
+        return "redirect:/products/all";
     }
 
     // Delete
@@ -69,6 +70,16 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") long id){
         productService.deleteById(id);
         return "redirect:/product/list";
+    }
+    @GetMapping(value = "/search")
+    public ModelAndView searchBooks(@RequestParam String searchString) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Product> products= productService.searchProducts(searchString);
+        modelAndView.addObject("products", products);
+        modelAndView.addObject("searchString", searchString);
+        modelAndView.addObject("studentCount", products.size());
+        modelAndView.setViewName("product/list");
+        return modelAndView;
     }
 
 
