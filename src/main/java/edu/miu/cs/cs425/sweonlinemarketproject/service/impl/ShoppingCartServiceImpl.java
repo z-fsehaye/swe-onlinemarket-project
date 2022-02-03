@@ -63,5 +63,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     }
 
+    @Override
+    public void deleteAllProductsFromCart(Long cartId) {
+        ShoppingCart cart= shoppingCartRepository.findById(cartId).orElseGet(null);
+        List<Product> products=  cart.getProducts();
+        products.clear();
+        cart.setProducts(products);
+        shoppingCartRepository.save(cart);
+
+    }
 
 }

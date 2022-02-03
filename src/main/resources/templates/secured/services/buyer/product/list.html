@@ -60,7 +60,7 @@
 
 
                 <td>
-                    <a th:href="@{|/onlinemarket/cart/${currentUser.shoppingCart.id}/addproduct/${product.productId}|}">Add to cart</a>
+                    <a th:href="@{|/onlinemarket/cart/${currentUser.shoppingCart.getCartId}/addproduct/${product.productId}|}">Add to cart</a>
 
 <!--                    <form action="@{|/onlinemarket/cart/${currentUser.shoppingCart.id}/addproduct/${product.productId}|}" method="get">-->
 
@@ -69,21 +69,18 @@
 <!--&lt;!&ndash;                        <a th:href="@{|/onlinemarket/cart/${currentUser.shoppingCart.id}/addproduct/${product.productId}|}">Add new Products</a>&ndash;&gt;-->
 <!--                    </form>-->
                 </td>
-                <td>
-                    <a th:href="@{'./delete/{id}'(id=${product.productId})}">Remove from Cart</a>
-                    <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/student/delete/' + ${student.bookId}}">Delete</a>-->
-                    <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-                    <!--                            Launch demo modal-->
-                    <!--                        </button>-->
-                </td>
+
             </tr>
             <tr th:if="${products.size() < 1}">
                 <td colspan="8" th:align="center">No Product found</td>
             </tr>
             </tbody>
         </table>
+
     </div>
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="confirmDeleteBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

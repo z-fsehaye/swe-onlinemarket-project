@@ -1,18 +1,14 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.model;
 
-import edu.miu.cs.cs425.sweonlinemarketproject.constant.OrderStatusType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
 
 
 @Data
@@ -24,7 +20,7 @@ import java.util.Objects;
 public class Order implements Serializable {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-    private OrderStatusType orderStatus;
+    private String orderStatus;
     @NotNull
     @DateTimeFormat(pattern= "yyyy-mm-dd")
     private LocalDate createdAt;
@@ -38,7 +34,7 @@ public class Order implements Serializable {
     //we get products from user of the owner by getCart
 
 
-    public Order(OrderStatusType orderStatus, LocalDate createdAt, double price, User owner) {
+    public Order(String orderStatus, LocalDate createdAt, double price, User owner) {
         this.orderStatus = orderStatus;
         this.createdAt = createdAt;
         this.price = price;
@@ -46,7 +42,7 @@ public class Order implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Order{" +
                 "orderId=" + orderId +
                 ", orderStatus=" + orderStatus +

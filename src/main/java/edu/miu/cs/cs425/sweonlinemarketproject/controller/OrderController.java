@@ -51,4 +51,11 @@ public class OrderController {
         return "redirect:/order/list";
     }
 
+    @GetMapping("/user/{userId}")
+    public String getOrdersByOwnerUserId(Model model, @PathVariable("userId") Long userId){
+        var order= orderService.getOrdersByOwnerUserId(userId).get(0);
+        model.addAttribute("order", order);
+        return "secured/services/buyer/order/orderPage";
+    }
+
 }

@@ -65,6 +65,9 @@
         </div>
     </div>
 
+    <a class="btn btn-outline-success btn-lg" th:href="@{|/onlinemarket/cart/${shoppingCart.getCartId}/checkout/${shoppingCart.buyer.userId}|}">Checkout</a>
+
+
     <!-- Modal -->
     <div class="modal fade" id="confirmDeleteBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -76,7 +79,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you wish to delete this product data?
+                    Are you sure you wish to checkout this cart?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

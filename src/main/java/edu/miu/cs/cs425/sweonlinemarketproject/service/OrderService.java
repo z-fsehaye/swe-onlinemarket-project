@@ -10,5 +10,6 @@ public interface OrderService {
     Order getOrderById(Long orderId);
     Order saveOrder(Order order);
     void deleteOrderById(Long orderId);
+    List<Order> getOrdersByOwnerUserId(Long userId);
 
 }

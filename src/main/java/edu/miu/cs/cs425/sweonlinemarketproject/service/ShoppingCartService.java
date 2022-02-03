@@ -18,6 +18,9 @@ public interface ShoppingCartService {
 
     void deleteProductFromCart(Long productId, Long cartId);
 
+    void deleteAllProductsFromCart(Long cartId);
+
+
 
 
 

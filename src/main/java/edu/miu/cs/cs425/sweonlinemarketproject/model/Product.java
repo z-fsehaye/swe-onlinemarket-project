@@ -29,7 +29,7 @@ public class Product implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private BigDecimal price;
+    private double price;
 
     @NotNull
     @NotBlank

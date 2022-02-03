@@ -1,9 +1,13 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 
+import edu.miu.cs.cs425.sweonlinemarketproject.model.Order;
 import edu.miu.cs.cs425.sweonlinemarketproject.model.Product;
 import edu.miu.cs.cs425.sweonlinemarketproject.model.ShoppingCart;
+import edu.miu.cs.cs425.sweonlinemarketproject.model.User;
+import edu.miu.cs.cs425.sweonlinemarketproject.service.OrderService;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.ProductService;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.ShoppingCartService;
+import edu.miu.cs.cs425.sweonlinemarketproject.service.UserService;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.GeneratedValue;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -23,7 +28,13 @@ public class ShoppingCartController {
     private ProductService productService;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/{cartId}/addproduct/{productId}")
     public String addProductToCart(@PathVariable("cartId") Long cartId, @PathVariable("productId") Long productId){
@@ -47,6 +58,25 @@ public class ShoppingCartController {
         ShoppingCart cart= shoppingCartService.getShoppingCartById(cartId);
         String buyerId=cart.getBuyer().getUserId().toString();
         return "redirect:/onlinemarket/cart/"+buyerId;
+    }
+
+    @GetMapping("/{cartId}/checkout/{userId}")
+    public String removeALlProductsFromCart(@PathVariable("cartId") Long cartId, @PathVariable("userId") Long userId){
+
+        ShoppingCart cart= shoppingCartService.getShoppingCartById(cartId);
+        List<Product> products= cart.getProducts();
+        double cartPrice= 0;
+        for (Product product: products){
+            cartPrice= cartPrice+ product.getPrice();
+        }
+        User buyer= userService.getUserById(userId);
+        Order order= new Order("Pending", LocalDate.now(), cartPrice, buyer);
+        orderService.saveOrder(order);
+
+        shoppingCartService.deleteAllProductsFromCart(cartId);
+        String buyerId=cart.getBuyer().getUserId().toString();
+        return "redirect:/onlinemarket/cart/"+buyerId;
+
     }
 
 
