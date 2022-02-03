@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping(value = {"/", "/home"})
-    public String home(Model model) {
-        return "home/index";
-    }
+//    @GetMapping(value = {"/", "/home"})
+//    public String home(Model model) {
+//        return "home/index";
+//    }
+
+
     @GetMapping(value = {"/","/onlinemarket","/public/home"})
     public String home0() {
         return "redirect:/onlinemarket/public/home";
@@ -34,6 +36,7 @@ public class HomeController {
 
     @GetMapping(value = {"/secured/home","/onlinemarket/secured/home"})
     public String home2() {
+
         return "secured/index" ;
     }
 

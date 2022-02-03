@@ -17,11 +17,11 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(mappedBy = "shoppingCart",cascade = CascadeType.MERGE)
+    @OneToOne(mappedBy = "shoppingCart")
     private User buyer;
 
+    @OneToMany
+    @JoinColumn(name= "carts_products")
+    private List<Product> products;
 
-
-    @OneToMany(mappedBy = "shoppingCart")
-    private List<ShoppingCartItem> shoppingCartItem;
 }

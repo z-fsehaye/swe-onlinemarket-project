@@ -2,6 +2,7 @@ package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 
 import edu.miu.cs.cs425.sweonlinemarketproject.model.Product;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.ProductService;
+import edu.miu.cs.cs425.sweonlinemarketproject.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,18 +15,21 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping({"/products"})
+@RequestMapping({"onlinemarket/secured/services/products"})
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    // Displays
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    @GetMapping("/all")
+    // Displays
+    @GetMapping("/list")
     public String displayAllProducts(Model model){
         model.addAttribute("products", productService.getAllProducts());
-        return "product/list";
+        model.addAttribute("currentUser", userDetailsServiceImpl.getCurrentUser());
+        return "secured/services/buyer/product/list";
     }
 
     @GetMapping("/{id}")

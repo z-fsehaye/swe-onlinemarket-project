@@ -51,8 +51,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
 
-    @OneToOne
-    @JoinColumn(name = "ShoppingCartItem_Id")
-    private ShoppingCartItem shoppingCartItem;
+
+
 
 }

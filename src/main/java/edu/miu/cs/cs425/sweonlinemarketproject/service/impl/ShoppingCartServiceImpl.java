@@ -7,6 +7,7 @@ import edu.miu.cs.cs425.sweonlinemarketproject.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -30,6 +31,35 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void deleteShoppingCartById(long id) {
         shoppingCartRepository.deleteById(id);
+
+    }
+
+    @Override
+    public ShoppingCart getShoppingCartByBuyer(Long id) {
+        return shoppingCartRepository.findByBuyerUserId(id).orElseGet(null);
+    }
+
+    @Override
+    public ShoppingCart addProductToShoppingCart(Long cartId,Product product) {
+        ShoppingCart cart= shoppingCartRepository.findById(cartId).orElseGet(null);
+        List<Product> products=  cart.getProducts();
+        products.add(product);
+        cart.setProducts(products);
+        return shoppingCartRepository.save(cart);
+    }
+
+    @Override
+    public void deleteProductFromCart(Long productId, Long cartId) {
+        ShoppingCart cart= shoppingCartRepository.findById(cartId).orElseGet(null);
+        List<Product> products=  cart.getProducts();
+        for (int i = 0; i < products.size(); i++) {
+            if(products.get(i).getProductId()==productId){
+                products.remove(i);
+                return;
+            }
+        }
+        cart.setProducts(products);
+        shoppingCartRepository.save(cart);
 
     }
 

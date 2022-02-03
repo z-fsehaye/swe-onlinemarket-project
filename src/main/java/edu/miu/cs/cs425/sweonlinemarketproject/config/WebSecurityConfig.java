@@ -51,8 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/onlinemarket/public/login")
-
-                .defaultSuccessUrl("/onlinemarket/secured/home")
+                .defaultSuccessUrl("/onlinemarket/secured/services")
                 .failureUrl("/onlinemarket/public/login?error")
                 .permitAll()
                 .and()
