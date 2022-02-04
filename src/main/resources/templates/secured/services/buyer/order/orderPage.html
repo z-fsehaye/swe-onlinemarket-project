@@ -36,42 +36,25 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">sku</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Order Status</th>
+                    <th scope="col">Created At</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">&nbsp;</th>
+
                 </tr>
                 </thead>
                 <tbody>
-<!--                <tr th:each="o,iterStat : ${order}">-->
+                <tr th:each="o,iterStat : ${orders}">
 
-<!--                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>-->
-<!--                    <td th:text="${order.sku}"></td>-->
-<!--                    <td th:text="${product.name}"></td>-->
-<!--                    <td th:text="${product.price}"></td>-->
-<!--                    <td th:text="${product.description}"></td>-->
-<!--                    <td th:text="${product.quantity}"></td>-->
-<!--                    &lt;!&ndash;                <td th:headers=""></td>&ndash;&gt;-->
+                    <th scope="row" th:text="${iterStat.count}+${'.'}"></th>
+                    <td th:text="${o.orderStatus}"></td>
+                    <td th:text="${o.createdAt}"></td>
+                    <td th:text="${o.price}"></td>
 
 
-
-<!--                    <td>-->
-<!--                        <a th:href="@{|/onlinemarket/cart/${currentUser.shoppingCart.getCartId}/addproduct/${product.productId}|}">Add to cart</a>-->
-
-                        <!--                    <form action="@{|/onlinemarket/cart/${currentUser.shoppingCart.id}/addproduct/${product.productId}|}" method="get">-->
-
-                        <!--                        <input type="submit" value="Add to cart">-->
-
-                        <!--&lt;!&ndash;                        <a th:href="@{|/onlinemarket/cart/${currentUser.shoppingCart.id}/addproduct/${product.productId}|}">Add new Products</a>&ndash;&gt;-->
-                        <!--                    </form>-->
-                    </td>
 
                 </tr>
-                <tr th:if="${products.size() < 1}">
-                    <td colspan="8" th:align="center">No Product found</td>
+                <tr th:if="${orders.size() < 1}">
+                    <td colspan="8" th:align="center">No Order found</td>
                 </tr>
                 </tbody>
             </table>

@@ -52,6 +52,4 @@ public class Product implements Serializable {
     private User seller;
 
 
-
-
 }

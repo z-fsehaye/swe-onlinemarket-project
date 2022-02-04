@@ -1,10 +1,12 @@
 package edu.miu.cs.cs425.sweonlinemarketproject.controller;
 
 import edu.miu.cs.cs425.sweonlinemarketproject.model.Order;
+import edu.miu.cs.cs425.sweonlinemarketproject.model.Product;
 import edu.miu.cs.cs425.sweonlinemarketproject.service.OrderService;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,10 +54,12 @@ public class OrderController {
     }
 
     @GetMapping("/user/{userId}")
-    public String getOrdersByOwnerUserId(Model model, @PathVariable("userId") Long userId){
-        var order= orderService.getOrdersByOwnerUserId(userId).get(0);
-        model.addAttribute("order", order);
-        return "secured/services/buyer/order/orderPage";
+    public ModelAndView getOrdersByOwnerUserId(@PathVariable("userId") Long userId){
+        var order= orderService.getOrdersByOwnerUserId(userId);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("orders", order);
+        modelAndView.setViewName("secured/services/buyer/order/orderPage");
+        return modelAndView;
     }
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -31,9 +32,6 @@ public class Order implements Serializable {
     @ManyToOne
     private User owner;
 
-    //we get products from user of the owner by getCart
-
-
     public Order(String orderStatus, LocalDate createdAt, double price, User owner) {
         this.orderStatus = orderStatus;
         this.createdAt = createdAt;
@@ -41,16 +39,7 @@ public class Order implements Serializable {
         this.owner = owner;
     }
 
-    @Override
-    public java.lang.String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderStatus=" + orderStatus +
-                ", createdAt=" + createdAt +
-                ", price=" + price +
-                ", owner=" + owner +
-                '}';
-    }
+
 
 
 }
