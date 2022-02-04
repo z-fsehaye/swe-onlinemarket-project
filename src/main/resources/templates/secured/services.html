@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{layouts/master-layout}">
 <head>
-    <title>The eLibrary - a Spring Security Demo webapp - Services</title>
+    <title>OnlineMarket - Services</title>
 </head>
 <body>
     <div layout:fragment="content" style="padding-top:1em;" class="container">
@@ -51,6 +51,11 @@
                                 <div style="color: #1a1a1a;" class="card-header">Welcome Seller</div>
                                 <div class="card-body">
                                     <h4 class="card-title">Seller Options</h4>
+                                    <p class="card-text">
+                                        <a style="text-decoration: inherit;" th:href="@{|/onlinemarket/secured/services/products/my-products/${currentUser.userId}|}">
+                                            List of products
+                                        </a>
+                                    </p>
                                     <p class="card-text">
                                         Add Products
                                     </p>

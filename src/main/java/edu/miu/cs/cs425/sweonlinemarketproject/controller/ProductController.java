@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class ProductController {
 
     @GetMapping("/my-products/{userId}")
 //    @PreAuthorize("hasRole('" + Role.SELLER + "')")
-    public String diplaySellerProducts(@PathVariable("userId") long userId, Model model){
+    public String displaySellerProducts(@PathVariable("userId") long userId, Model model){
         model.addAttribute("products", productService.getAllProductsBySellerId(userId));
-        return "product/product-view";
+        return "secured/services/seller/sellerPage";
     }
 
     @GetMapping("/new-product")
@@ -54,7 +55,7 @@ public class ProductController {
     @GetMapping("/update-product/{id}")
     public String displayUpdateProductForm(Model model, @PathVariable("id") long id){
         model.addAttribute("product", productService.getProductById(id));
-        return "product/product-form";
+        return "secured/services/seller/product-form";
     }
 
     // Save and Update
@@ -63,17 +64,21 @@ public class ProductController {
     public String saveProduct(Model model, @Valid @ModelAttribute("product") Product product, BindingResult result){
         if (result.hasErrors()){
             model.addAttribute("errors", result.getAllErrors());
-            return "product/product-form";
+            return "secured/services/seller/product-form";
         }
         productService.saveProduct(product);
-        return "redirect:/product/all";
+//        return "redirect:/product/all";
+        return "secured/services/seller/sellerPage";
     }
+
 
     // Delete
     @GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") long id){
+    public String deleteProduct(@PathVariable("id") long id, HttpServletRequest request){
         productService.deleteById(id);
-        return "redirect:/product/all";
+        String referer = request.getHeader("Referer");
+//        return "redirect:/onlinemarket/secured/services/products/my-products/";
+        return "redirect:" + referer;
     }
     @GetMapping(value = "/search")
     public ModelAndView searchBooks(@RequestParam String searchString) {

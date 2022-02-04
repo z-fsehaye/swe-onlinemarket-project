@@ -39,7 +39,7 @@
         <span style="font-size: 2em; color: #32a5e7;">Edit Product data with sku: [[${product.sku}]]</span>
     </div>
 
-    <form id="editBookForm" method="post" action="/products/save-product" th:object="${product}">
+    <form id="editBookForm" method="post" action="/onlinemarket/secured/services/products/save-product" th:object="${product}">
         <fieldset>
             <input type="hidden" name="productId" th:value="${product.productId}"/>
             <input type="hidden" name="seller" th:value="${product.seller.getUserId()}"/>
