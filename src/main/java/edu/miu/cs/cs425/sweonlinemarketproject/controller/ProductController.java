@@ -49,7 +49,8 @@ public class ProductController {
     @GetMapping("/new-product")
     public String displayNewProductForm(Model model){
         model.addAttribute("product", new Product());
-        return "secured/services/seller/product-form";
+        model.addAttribute("currenUser", userDetailsServiceImpl.getCurrentUser());
+        return "secured/services/seller/new-product-form";
     }
 
     @GetMapping("/update-product/{id}")
