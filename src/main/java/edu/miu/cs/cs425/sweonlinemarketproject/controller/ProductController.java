@@ -49,7 +49,7 @@ public class ProductController {
     @GetMapping("/new-product")
     public String displayNewProductForm(Model model){
         model.addAttribute("product", new Product());
-        return "product/product-form";
+        return "secured/services/seller/product-form";
     }
 
     @GetMapping("/update-product/{id}")
