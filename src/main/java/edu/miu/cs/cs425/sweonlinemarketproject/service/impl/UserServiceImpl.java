@@ -33,6 +33,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getSellers() {
+        return userRepository.findUsersBySellerRole();
+    }
+
+    @Override
+    public User approveSeller(long sellerId) {
+        User seller = userRepository.findById(sellerId).orElseGet(null);
+        seller.setApprovedSeller(true);
+        return userRepository.save(seller);
+    }
+
+    @Override
     public User updateUser(User user, Long id) {
         User user1=userRepository.findById(id).orElse(null);
         if(!user1.equals(null)) {

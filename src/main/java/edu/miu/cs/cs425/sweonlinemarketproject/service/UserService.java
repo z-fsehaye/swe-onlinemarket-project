@@ -17,9 +17,8 @@ public interface UserService {
 
     void deleteUserById(Long userId);
 
+    List<User> getSellers();
 
-
-
-
+    User approveSeller(long sellerId);
 
 }
