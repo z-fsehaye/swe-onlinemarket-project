@@ -61,12 +61,12 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/{cartId}/checkout/{userId}")
-    public String removeALlProductsFromCart(@PathVariable("cartId") Long cartId, @PathVariable("userId") Long userId){
+    public String checkOutProductsFromCart(@PathVariable("cartId") Long cartId, @PathVariable("userId") Long userId){
 
         ShoppingCart cart= shoppingCartService.getShoppingCartById(cartId);
-        List<Product> products= cart.getProducts();
+        List<Product> cartProducts= cart.getProducts();
         double cartPrice= 0;
-        for (Product product: products){
+        for (Product product: cartProducts){
             cartPrice= cartPrice+ product.getPrice();
         }
         User buyer= userService.getUserById(userId);
