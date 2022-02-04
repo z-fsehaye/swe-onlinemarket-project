@@ -42,7 +42,7 @@
     <form id="editBookForm" method="post" action="/onlinemarket/secured/services/products/save-product" th:object="${product}">
         <fieldset>
             <input type="hidden" name="productId" th:value="${product.productId}"/>
-            <input type="hidden" name="seller" th:value="${product.seller.getUserId()}"/>
+            <input type="hidden" name="seller" th:value="${product.seller.userId}"/>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
