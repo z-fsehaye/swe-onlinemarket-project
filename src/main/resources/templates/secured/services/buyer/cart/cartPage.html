@@ -50,7 +50,7 @@
                     <!--                <td th:headers=""></td>-->
 
                     <td>
-                        <a th:href="@{'./delete/{id}'(id=${product.productId})}">Remove from Cart</a>
+                        <a th:href="@{|/onlinemarket/cart/${shoppingCart.getCartId}/delete/${product.productId}|}">Remove from Cart</a>
                         <!--                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/elibrary/student/delete/' + ${student.bookId}}">Delete</a>-->
                         <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
                         <!--                            Launch demo modal-->
