@@ -67,8 +67,8 @@ public class ProductController {
             return "secured/services/seller/product-form";
         }
         productService.saveProduct(product);
-//        return "redirect:/product/all";
-        return "secured/services/seller/sellerPage";
+        return "redirect:/onlinemarket/secured/services/products/my-products";
+//        return "secured/services/seller/sellerPage";
     }
 
 
